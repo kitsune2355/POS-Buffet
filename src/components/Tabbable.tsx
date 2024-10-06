@@ -78,7 +78,7 @@ const Tabbable: React.FC = () => {
               zIndex: 1,
             }}
           >
-            <Stack sx={{ display: { xs: "block", md: "none" }, mb: 2 }}>
+            <Stack sx={{ display: { xs: "block", md: "none" } }}>
               <Stack
                 sx={{
                   borderBottom: 1,

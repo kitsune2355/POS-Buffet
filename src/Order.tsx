@@ -59,9 +59,6 @@ const Order: React.FC<IOrderProps> = ({ category }) => {
                 <Typography gutterBottom variant="h5" component="div">
                   {category}
                 </Typography>
-                <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </Typography>
                 <Stack direction="row">
                   <IconButton
                     size="small"
@@ -78,10 +75,9 @@ const Order: React.FC<IOrderProps> = ({ category }) => {
                     onChange={(e) =>
                       handleInputChange(index, Number(e.target.value))
                     }
-                    inputProps={{ min: 1 }}
+                    inputProps={{ min: 1, style: { textAlign: "center" } }}
                     sx={{
                       width: "60px",
-                      textAlign: "center",
                       "& input::-webkit-inner-spin-button": { display: "none" },
                       "& input::-webkit-outer-spin-button": { display: "none" },
                     }}
