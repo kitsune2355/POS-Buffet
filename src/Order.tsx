@@ -53,7 +53,7 @@ const Order: React.FC<IOrderProps> = ({ category }) => {
                 component="img"
                 image="https://embed.widencdn.net/img/beef/melpznnl7q/800x600px/Top%20Sirloin%20Steak.psd?keep=c&u=7fueml"
               />
-              <CardContent>
+              <CardContent sx={{ px: 1 }}>
                 <Typography gutterBottom variant="h5" component="div">
                   {category}
                 </Typography>
@@ -65,7 +65,12 @@ const Order: React.FC<IOrderProps> = ({ category }) => {
                   handleInputChange={handleInputChange}
                 />
               </CardContent>
-              <Button fullWidth variant="contained" size="small">
+              <Button
+                fullWidth
+                variant="contained"
+                size="small"
+                sx={{ color: "#fff" }}
+              >
                 Add
               </Button>
             </Card>

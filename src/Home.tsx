@@ -4,7 +4,7 @@ import Tabbable from "./components/Tabbable";
 
 const Home: React.FC = () => {
   return (
-    <Container maxWidth="lg" sx={{ marginTop: "2rem" }}>
+    <Container maxWidth="lg" sx={{ marginTop: "2rem", marginBottom: "4rem" }}>
       <Tabbable />
     </Container>
   );

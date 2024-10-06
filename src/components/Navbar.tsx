@@ -37,14 +37,8 @@ const Navbar: React.FC<INavbarProps> = ({
           zIndex: 1,
         }}
       >
-        <Stack direction="row" justifyContent="space-between">
-          <Typography
-            variant="h4"
-            pt={2}
-            pb={2}
-            onClick={onHome}
-            sx={{ cursor: "pointer" }}
-          >
+        <Stack direction="row" justifyContent="space-between" pt={2} pb={2}>
+          <Typography variant="h4" onClick={onHome} sx={{ cursor: "pointer" }}>
             Moo Buffet
           </Typography>
           <IconButton size="small" onClick={onCart}>
@@ -75,7 +69,7 @@ const Navbar: React.FC<INavbarProps> = ({
             }}
             direction="row"
           >
-            <Typography variant="h4" pt={2} pb={2}>
+            <Typography variant="h4" pt={2} pb={2} onClick={onHome}>
               Moo Buffet
             </Typography>
             <Stack direction="row">

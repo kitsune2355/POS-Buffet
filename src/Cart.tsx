@@ -1,4 +1,11 @@
-import { CardMedia, Container, Grid, Stack, Typography } from "@mui/material";
+import {
+  Button,
+  CardMedia,
+  Container,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
 import React, { useState } from "react";
 import Quantity from "./components/Quantity";
 import Navbar from "./components/Navbar";
@@ -32,7 +39,7 @@ const Cart: React.FC = () => {
     });
   };
   return (
-    <Container maxWidth="lg" sx={{ marginTop: "2rem" }}>
+    <Container maxWidth="lg" sx={{ marginTop: "2rem", marginBottom: "6rem" }}>
       <Navbar />
       <Grid container spacing={2} pt={4}>
         {Array.from({ length: 11 }, (_, index) => (
@@ -45,7 +52,7 @@ const Cart: React.FC = () => {
               p={4}
               sx={{ border: 1, borderColor: "primary.main", borderRadius: 5 }}
             >
-              <Stack>
+              <Stack maxWidth={200}>
                 <CardMedia
                   sx={{ height: 100 }}
                   component="img"
@@ -68,6 +75,18 @@ const Cart: React.FC = () => {
           </Grid>
         ))}
       </Grid>
+      <div
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+        }}
+      >
+        <Button variant="contained" fullWidth sx={{ py: 2, color: "#fff" }}>
+          Submit
+        </Button>
+      </div>
     </Container>
   );
 };
