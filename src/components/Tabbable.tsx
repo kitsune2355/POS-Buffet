@@ -1,17 +1,10 @@
-import {
-  IconButton,
-  MenuItem,
-  Stack,
-  Tab,
-  Tabs,
-  Typography,
-} from "@mui/material";
+import { IconButton, MenuItem, Stack, Tab, Tabs } from "@mui/material";
 import { TabPanel, TabContext } from "@mui/lab";
 import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import theme from "../theme/Theme";
 import Order from "../Order";
-import { ShoppingCart } from "@mui/icons-material";
+import Navbar from "./Navbar";
 
 const category = [
   { label: "Meat", value: "meat" },
@@ -42,63 +35,21 @@ const Tabbable: React.FC = () => {
     <Stack>
       <TabContext value={tab}>
         <Stack>
-          {/* Desktop View */}
-          <Stack
-            sx={{
-              display: { xs: "none", md: "block" },
-              borderBottom: 1,
-              borderColor: "divider",
-              background: "#fff",
-              position: "sticky",
-              top: 0,
-              zIndex: 1,
-            }}
-          >
-            <Stack direction="row" justifyContent="space-between">
-              <Typography variant="h4">Moo Buffet</Typography>
-              <IconButton size="small">
-                <ShoppingCart />
-              </IconButton>
-            </Stack>
-            <Stack direction="row" justifyContent="flex-end">
+          <Navbar
+            childrenTab={
               <Tabs value={tab} onChange={handleTabChange}>
                 {category.map((cate) => (
                   <Tab label={cate.label} value={cate.value} />
                 ))}
               </Tabs>
-            </Stack>
-          </Stack>
-
-          {/* Mobile View */}
-          <Stack
-            sx={{
-              background: "#fff",
-              position: "sticky",
-              top: 0,
-              zIndex: 1,
-            }}
-          >
-            <Stack sx={{ display: { xs: "block", md: "none" } }}>
-              <Stack
-                sx={{
-                  borderBottom: 1,
-                  borderColor: "divider",
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-                direction="row"
-              >
-                <Typography variant="h4">Moo Buffet</Typography>
-                <Stack direction="row">
-                  <IconButton size="small">
-                    <ShoppingCart />
-                  </IconButton>
-                  <IconButton size="small" onClick={toggleDropdown}>
-                    <MenuIcon />
-                  </IconButton>
-                </Stack>
-              </Stack>
-              {dropdownOpen && (
+            }
+            childrenMenuIcon={
+              <IconButton size="small" onClick={toggleDropdown}>
+                <MenuIcon />
+              </IconButton>
+            }
+            childrenDropdown={
+              dropdownOpen && (
                 <Stack
                   sx={{
                     width: "100%",
@@ -115,9 +66,9 @@ const Tabbable: React.FC = () => {
                     </MenuItem>
                   ))}
                 </Stack>
-              )}
-            </Stack>
-          </Stack>
+              )
+            }
+          />
 
           {/* Tab Panels */}
           <Stack>
