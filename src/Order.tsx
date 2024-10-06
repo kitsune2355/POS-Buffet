@@ -1,16 +1,14 @@
-import { AddCircle, RemoveCircle } from "@mui/icons-material";
 import {
   Button,
   Card,
   CardContent,
   CardMedia,
   Grid,
-  IconButton,
   Stack,
-  TextField,
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
+import Quantity from "./components/Quantity";
 
 interface IOrderProps {
   category: string;
@@ -47,8 +45,8 @@ const Order: React.FC<IOrderProps> = ({ category }) => {
   return (
     <Grid container spacing={2}>
       {Array.from({ length: 34 }, (_, index) => (
-        <Grid item xs={6} sm={4} md={2} lg={2} key={index}>
-          <Stack direction="row" spacing={2}>
+        <Grid item xs={12} sm={3} md={2} lg={2} key={index}>
+          <Stack direction="row" spacing={2} justifyContent="center">
             <Card sx={{ maxWidth: 200 }}>
               <CardMedia
                 sx={{ height: 100 }}
@@ -59,37 +57,13 @@ const Order: React.FC<IOrderProps> = ({ category }) => {
                 <Typography gutterBottom variant="h5" component="div">
                   {category}
                 </Typography>
-                <Stack direction="row">
-                  <IconButton
-                    size="small"
-                    color="primary"
-                    onClick={() => handleDecreaseQuantity(index)}
-                  >
-                    <RemoveCircle />
-                  </IconButton>
-                  <TextField
-                    fullWidth
-                    type="number"
-                    size="small"
-                    value={quantities[index]}
-                    onChange={(e) =>
-                      handleInputChange(index, Number(e.target.value))
-                    }
-                    inputProps={{ min: 1, style: { textAlign: "center" } }}
-                    sx={{
-                      width: "60px",
-                      "& input::-webkit-inner-spin-button": { display: "none" },
-                      "& input::-webkit-outer-spin-button": { display: "none" },
-                    }}
-                  />
-                  <IconButton
-                    size="small"
-                    color="primary"
-                    onClick={() => handleIncreaseQuantity(index)}
-                  >
-                    <AddCircle />
-                  </IconButton>
-                </Stack>
+                <Quantity
+                  index={index}
+                  quantity={quantities[index]}
+                  handleDecreaseQuantity={handleDecreaseQuantity}
+                  handleIncreaseQuantity={handleIncreaseQuantity}
+                  handleInputChange={handleInputChange}
+                />
               </CardContent>
               <Button fullWidth variant="contained" size="small">
                 Add
