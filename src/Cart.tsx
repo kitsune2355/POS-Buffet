@@ -54,7 +54,7 @@ const Cart: React.FC = () => {
             >
               <Stack maxWidth={200}>
                 <CardMedia
-                  sx={{ height: 100 }}
+                  sx={{ height: 100, objectFit: "contain" }}
                   component="img"
                   image="https://embed.widencdn.net/img/beef/melpznnl7q/800x600px/Top%20Sirloin%20Steak.psd?keep=c&u=7fueml"
                 />

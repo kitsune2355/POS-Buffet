@@ -38,8 +38,8 @@ const Tabbable: React.FC = () => {
           <Navbar
             childrenTab={
               <Tabs value={tab} onChange={handleTabChange}>
-                {category.map((cate) => (
-                  <Tab label={cate.label} value={cate.value} />
+                {category.map((cate, key) => (
+                  <Tab key={key} label={cate.label} value={cate.value} />
                 ))}
               </Tabs>
             }
@@ -60,8 +60,11 @@ const Tabbable: React.FC = () => {
                     opacity: 0.9,
                   }}
                 >
-                  {category.map((cate) => (
-                    <MenuItem onClick={() => handleMenuItemClick(cate.value)}>
+                  {category.map((cate, key) => (
+                    <MenuItem
+                      key={key}
+                      onClick={() => handleMenuItemClick(cate.value)}
+                    >
                       {cate.label}
                     </MenuItem>
                   ))}
@@ -73,7 +76,7 @@ const Tabbable: React.FC = () => {
           {/* Tab Panels */}
           <Stack>
             {category.map((cate) => (
-              <TabPanel value={cate.value}>
+              <TabPanel key={cate.value} value={cate.value}>
                 <Order category={cate.label} />
               </TabPanel>
             ))}
