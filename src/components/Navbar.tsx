@@ -1,4 +1,4 @@
-import { IconButton, Stack, Typography } from "@mui/material";
+import { Badge, IconButton, Stack, Typography } from "@mui/material";
 import React from "react";
 import { ShoppingCart } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
@@ -42,7 +42,9 @@ const Navbar: React.FC<INavbarProps> = ({
             Moo Buffet
           </Typography>
           <IconButton size="small" onClick={onCart}>
-            <ShoppingCart />
+            <Badge badgeContent={1} color="primary">
+              <ShoppingCart />
+            </Badge>
           </IconButton>
         </Stack>
         <Stack direction="row" justifyContent="flex-end">
@@ -74,7 +76,9 @@ const Navbar: React.FC<INavbarProps> = ({
             </Typography>
             <Stack direction="row">
               <IconButton size="small" onClick={onCart}>
-                <ShoppingCart />
+                <Badge badgeContent={1} color="primary">
+                  <ShoppingCart />
+                </Badge>
               </IconButton>
               {childrenMenuIcon}
             </Stack>
