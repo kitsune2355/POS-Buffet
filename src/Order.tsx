@@ -14,8 +14,14 @@ interface IOrderProps {
   category: string;
 }
 
+interface CartItem {
+  category: string;
+  quantity: number;
+}
+
 const Order: React.FC<IOrderProps> = ({ category }) => {
   const [quantities, setQuantities] = useState(Array(34).fill(1));
+  const [cart, setCart] = useState<CartItem[]>([]);
 
   const handleIncreaseQuantity = (index: number) => {
     setQuantities((prev) => {
@@ -42,6 +48,32 @@ const Order: React.FC<IOrderProps> = ({ category }) => {
       return newQuantities;
     });
   };
+
+  const addToCart = (index: number) => {
+    const item: CartItem = {
+      category,
+      quantity: quantities[index],
+    };
+
+    setCart((prevCart) => {
+      const existingItem = prevCart.find(
+        (cartItem) => cartItem.category === item.category
+      );
+
+      if (existingItem) {
+        return prevCart.map((cartItem) =>
+          cartItem.category === item.category
+            ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
+            : cartItem
+        );
+      } else {
+        return [...prevCart, item];
+      }
+    });
+  };
+
+  console.log("cart", cart);
+
   return (
     <Grid container spacing={2}>
       {Array.from({ length: 34 }, (_, index) => (
@@ -70,6 +102,7 @@ const Order: React.FC<IOrderProps> = ({ category }) => {
                 variant="contained"
                 size="small"
                 sx={{ color: "#fff" }}
+                onClick={() => addToCart(index)}
               >
                 Add
               </Button>
