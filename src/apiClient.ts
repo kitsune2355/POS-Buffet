@@ -1,4 +1,7 @@
 import axios from "axios";
 import { env } from "./env";
 
-export const apiClient = axios.create({ baseURL: env.API_ENDPOINT, withCredentials: true })
+export const apiClient = axios.create({
+  baseURL: env.API_ENDPOINT,
+  withCredentials: false,
+});
