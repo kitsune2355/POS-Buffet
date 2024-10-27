@@ -7,7 +7,7 @@ import { categoryService } from "../../../../service/category.service";
 export function* fetchCategoryListWorker({
   resolve,
   reject,
-}: IPayloadAction<Pick<ICategory, "id">>) {
+}: IPayloadAction<void>) {
   try {
     const category: ICategory[] = yield call(categoryService.getList);
     yield put(FETCH_CATEGORY_LIST_SUCCESS(category));

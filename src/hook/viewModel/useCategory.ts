@@ -5,7 +5,7 @@ import { FETCH_CATEGORY_LIST } from "../../redux/action/category.action";
 
 export const useCategory = () => {
   const dispatch = useDispatch();
-  const { lists: categoryList } = useSelector((state) => state.category);
+  const { lists: categoryList,isLoading } = useSelector((state) => state.category);
 
   const onFetchCategoryList = useCallback(() => {
     return dispatch(FETCH_CATEGORY_LIST());
@@ -13,6 +13,7 @@ export const useCategory = () => {
 
   return {
     categoryList,
+    isLoading,
     onFetchCategoryList,
   };
 };

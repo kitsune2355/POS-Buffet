@@ -1,13 +1,14 @@
-import { createReducer } from '@reduxjs/toolkit'
-import { FETCH_CATEGORY_LIST_SUCCESS } from '../action/category.action'
-import { ICategoryState } from '../../interface/redux/reducers/categoryReducer.interface'
+import { createReducer } from "@reduxjs/toolkit";
+import { FETCH_CATEGORY_LIST_SUCCESS } from "../action/category.action";
+import { ICategoryState } from "../../interface/redux/reducers/categoryReducer.interface";
 
 const initialState: ICategoryState = {
   lists: [],
-}
+  isLoading: true,
+};
 export const categoryReducer = createReducer(initialState, (builder) =>
-  builder
-    .addCase(FETCH_CATEGORY_LIST_SUCCESS, (state, { payload }) => {
-      state.lists = payload
-    })
-)
+  builder.addCase(FETCH_CATEGORY_LIST_SUCCESS, (state, { payload }) => {
+    state.lists = payload;
+    state.isLoading = false;
+  })
+);
