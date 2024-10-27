@@ -43,7 +43,7 @@ const Cart: React.FC = () => {
       <Navbar />
       <Grid container spacing={2} pt={4}>
         {Array.from({ length: 11 }, (_, index) => (
-          <Grid item xs={12} sm={6} md={4} lg={4}>
+          <Grid item xs={12} sm={6} md={4} lg={4} key={index}>
             <Stack
               direction="row"
               justifyContent="space-between"

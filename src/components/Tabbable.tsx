@@ -1,20 +1,14 @@
 import { IconButton, MenuItem, Stack, Tab, Tabs } from "@mui/material";
 import { TabPanel, TabContext } from "@mui/lab";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import theme from "../theme/Theme";
 import Order from "../Order";
 import Navbar from "./Navbar";
-
-const category = [
-  { label: "Meat", value: "meat" },
-  { label: "Beef", value: "beef" },
-  { label: "Vegetable", value: "vegetable" },
-  { label: "Snack", value: "snack" },
-  { label: "Dessert", value: "dessert" },
-];
+import { useCategory } from "../hook";
 
 const Tabbable: React.FC = () => {
+  const { categoryList, onFetchCategoryList } = useCategory();
   const [tab, setTab] = useState("meat");
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -31,6 +25,12 @@ const Tabbable: React.FC = () => {
     setDropdownOpen(false);
   };
 
+  console.log("categoryList", categoryList);
+
+  useEffect(() => {
+    onFetchCategoryList();
+  }, [onFetchCategoryList]);
+
   return (
     <Stack>
       <TabContext value={tab}>
@@ -38,8 +38,8 @@ const Tabbable: React.FC = () => {
           <Navbar
             childrenTab={
               <Tabs value={tab} onChange={handleTabChange}>
-                {category.map((cate, key) => (
-                  <Tab key={key} label={cate.label} value={cate.value} />
+                {categoryList.map((cate, key) => (
+                  <Tab key={key} label={cate.category_Name} value={cate.id} />
                 ))}
               </Tabs>
             }
@@ -60,12 +60,12 @@ const Tabbable: React.FC = () => {
                     opacity: 0.9,
                   }}
                 >
-                  {category.map((cate, key) => (
+                  {categoryList.map((cate, key) => (
                     <MenuItem
                       key={key}
-                      onClick={() => handleMenuItemClick(cate.value)}
+                      onClick={() => handleMenuItemClick(cate.id)}
                     >
-                      {cate.label}
+                      {cate.category_Name}
                     </MenuItem>
                   ))}
                 </Stack>
@@ -75,9 +75,9 @@ const Tabbable: React.FC = () => {
 
           {/* Tab Panels */}
           <Stack>
-            {category.map((cate) => (
-              <TabPanel key={cate.value} value={cate.value}>
-                <Order category={cate.label} />
+            {categoryList.map((cate) => (
+              <TabPanel key={cate.id} value={cate.id}>
+                <Order category={cate.category_Name} />
               </TabPanel>
             ))}
           </Stack>
